@@ -1,9 +1,11 @@
 package ru.zaharka.entities;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "order_item")
+@NoArgsConstructor
 public class OrderItem {
 
     @Id

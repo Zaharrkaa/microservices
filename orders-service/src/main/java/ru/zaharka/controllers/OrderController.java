@@ -16,9 +16,7 @@ public class OrderController {
     private final OrderServiceProducer orderServiceProducer;
 
     @PostMapping("/send")
-    public ResponseEntity<OrderDto> sendOrder() {
-        OrderItemDto orderItemDto = new OrderItemDto("1", "2", 1, 3);
-        OrderDto orderDto = new OrderDto("123", "1234", List.of(orderItemDto), 5, "done", "Russia");
+    public ResponseEntity<OrderDto> sendOrder(@RequestBody OrderDto orderDto) {
         orderServiceProducer.send(orderDto);
         return ResponseEntity.ok(orderDto);
     }

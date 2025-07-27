@@ -4,4 +4,7 @@ include 'payment-service'
 include 'shipping-service'
 include 'notifications-service'
 include 'utils'
+include 'external-config'
+include 'api-gateway-service'
+include 'eureka-server'
 

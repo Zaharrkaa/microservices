@@ -19,4 +19,13 @@ public class OrderItemDto {
 
     private double price;
 
+    @Override
+    public String toString() {
+        return "OrderItemDto{" +
+                "itemId='" + itemId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
+    }
 }

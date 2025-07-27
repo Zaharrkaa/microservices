@@ -1,11 +1,13 @@
 package ru.zaharka.entities;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "order")
+@NoArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
