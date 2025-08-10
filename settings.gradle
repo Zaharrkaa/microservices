@@ -7,4 +7,5 @@ include 'utils'
 include 'external-config'
 include 'api-gateway-service'
 include 'eureka-server'
+include 'security-service'
 

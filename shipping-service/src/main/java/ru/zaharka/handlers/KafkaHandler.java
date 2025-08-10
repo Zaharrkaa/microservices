@@ -18,6 +18,7 @@ public class KafkaHandler {
         PaymentDto paymentDto = mapper.readValue(json, PaymentDto.class);
         System.out.println("Получены данные об оплате: " + paymentDto);
         System.out.println("Упаковываем и отгружаем...");
+
         System.out.println("Готово!");
     }
 }
