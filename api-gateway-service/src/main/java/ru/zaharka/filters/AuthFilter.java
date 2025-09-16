@@ -29,8 +29,10 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
                     throw new RuntimeException("Missing Authorization header");
                 }
                 String authorization = exchange.getRequest().getHeaders().get("Authorization").getFirst();
+                System.out.println(authorization);
                 if(authorization.startsWith("Bearer ") && authorization != null){
                     authorization = authorization.substring("Bearer ".length());
+                    System.out.println(authorization);
                 }
                 try {
                     jwtService.parseToken(authorization);

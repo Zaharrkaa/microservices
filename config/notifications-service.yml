@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: notifications-service
+  mail:
+    username: zlehtman@gmail.com
+    password: xcvj tedu wgot gyvm
+    host: smtp.gmail.com
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  kafka:
+    bootstrap-servers: localhost:9092
+
+server:
+  port: 8084

@@ -1,6 +1,7 @@
 package ru.zaharka.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,6 +32,12 @@ public class AuthController {
         else{
             throw new BadCredentialsException("Invalid username or password");
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserCredential> getUserCredential(@PathVariable int id){
+        UserCredential userCredential = authService.findUserById(id);
+        return ResponseEntity.ok(userCredential);
     }
 
     @GetMapping("/validate")

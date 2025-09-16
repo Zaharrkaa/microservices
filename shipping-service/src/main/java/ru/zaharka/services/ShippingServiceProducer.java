@@ -7,14 +7,13 @@ import ru.zaharka.dto.OrderDto;
 
 @Service
 @RequiredArgsConstructor
-public class OrderServiceProducer {
-    private static final String TOPIC = "new_orders";
+public class ShippingServiceProducer {
+
+    private static final String TOPIC = "shipped_orders";
     private final KafkaTemplate<String, OrderDto> kafkaTemplate;
 
-
     public void send(OrderDto orderDto) {
-        System.out.println("sending: " + orderDto);
+        System.out.println("Sending: " + orderDto);
         kafkaTemplate.send(TOPIC, orderDto);
     }
-
 }

@@ -4,22 +4,17 @@ spring:
   cloud:
     gateway:
       server:
-        webmvc:
+        webflux:
           routes:
             - id: order-service
-              uri: lb://order-service
+              uri: http://localhost:8080
               predicates:
                 - Path=/orders/**
               filters:
                 - AuthFilter
-                - name: CircuitBreaker
-                  args:
-                    id: 1
-                    name: ordersCircuitBreaker
-                    fallbackUri: forward:/fallback/orders
                 - RemoveRequestHeader=Cookie
             - id: security-service
-              uri: lb://security-service
+              uri: http://localhost:8090
               predicates:
                 - Path=/auth/**
     config:
@@ -34,17 +29,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
-resilience4j:
-  circuitbreaker:
-    configs:
-      default:
-        registerHealthIndicator: true
-        slidingWindowType: COUNT_BASED
-        slidingWindowSize: 100
-        minimumNumberOfCalls: 10
-        waitDurationInOpenState: 60s
-        permittedNumberOfCallsInHalfOpenState: 10
-        failureRateThreshold: 50
-        slowCallRateThreshold: 100
-        slowCallDurationThreshold: 2s

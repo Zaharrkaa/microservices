@@ -17,13 +17,13 @@ public class KafkaHandler {
     private final PaymentServiceProducer paymentServiceProducer;
 
     @KafkaListener(topics = topic, groupId = "payment_group")
-    public void handleOrderEvent(String str) throws JsonProcessingException {
-        OrderDto orderDto = objectMapper.readValue(str, OrderDto.class);
-        System.out.println("Выполняется обработка заказа...");
+    public void handleOrderEvent(String json) throws JsonProcessingException {
+        OrderDto orderDto = objectMapper.readValue(json, OrderDto.class);
+        System.out.println(orderDto);
         if (orderDto.getStatus().equals("payed")){
             System.out.println("Заказ оплачен!");
             PaymentDto paymentDto = new PaymentDto("1", orderDto.getTotalAmount(), "RUB", orderDto.getShippingAddress());
-            paymentServiceProducer.send(paymentDto);
+            paymentServiceProducer.send(orderDto);
         }
         else {
             System.out.println("Заказ не оплачен.");
